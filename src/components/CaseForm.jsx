@@ -21,7 +21,7 @@ const CaseForm = ({ onAddCase }) => {
     e.preventDefault();
     try {
       setLoading(true)
-      const response = await axios.post('http://localhost:3000/api/cases', formData);
+      const response = await axios.post('https://gemsolicitors-server.onrender.com/cases', formData);
       onAddCase(response.data);
       setFormData(initialState)
     } catch (error) {
