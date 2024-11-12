@@ -10,7 +10,7 @@ const CaseTable = () => {
   useEffect(() => {
     const fetchCases = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/cases');
+        const response = await axios.get('https://gemsolicitors-server.onrender.com/api/cases');
         const sortedCase = response.data.reverse()
         setCases(sortedCase);
       } catch (error) {
@@ -26,7 +26,7 @@ const CaseTable = () => {
 
 if (sure) {
     try{
-        const res = await axios.delete(`http://localhost:3000/api/cases/${_id}`)
+        const res = await axios.delete(`https://gemsolicitors-server.onrender.com/api/cases/${_id}`)
     if (res.status === 200) {
         console.log("Client deleted successfully");
         setCases((prevCases) => prevCases.filter((caseItem) => caseItem._id !== _id))

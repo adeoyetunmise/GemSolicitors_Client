@@ -31,7 +31,7 @@ const EditUser = () => {
         e.preventDefault()
         try {
             setLoading(true)
-            const response = await axios.patch(`http://localhost:3000/api/cases/${_id}`, clientDet)
+            const response = await axios.patch(`https://gemsolicitors-server.onrender.com/api/cases/${_id}`, clientDet)
 
             if(response.status === 200){
                 console.log('Client Updated');
@@ -51,7 +51,7 @@ const EditUser = () => {
     useEffect (() => {
         const fetchClientDetail = async () => {
             try {
-                const res = await axios.get(`http://localhost:3000/api/cases/${_id}`);
+                const res = await axios.get(`https://gemsolicitors-server.onrender.com/api/cases/${_id}`);
                 setClientDet(res.data.client)
             }catch (err){
                 setClientDet(false)
