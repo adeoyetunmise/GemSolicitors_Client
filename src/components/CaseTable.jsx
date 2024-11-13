@@ -41,6 +41,7 @@ if (sure) {
 }
 
   return (
+    <div className="overflow-x-auto">
     <table className="min-w-full bg-white border border-gray-200">
       <thead>
         <tr>
@@ -52,26 +53,32 @@ if (sure) {
         </tr>
       </thead>
       <tbody>
-        {cases.map((caseItem, index) => (
-          <tr key={index}>
+        {cases.map((caseItem) => (
+          <tr key={caseItem._id}>
             <td className="border px-4 py-2">{caseItem.clientName}</td>
             <td className="border px-4 py-2">{caseItem.caseType}</td>
             <td className="border px-4 py-2">{caseItem.lawyerName}</td>
             <td className="border px-4 py-2">{caseItem.status}</td>
             <td className="border px-4 py-2 flex items-center justify-center space-x-2">
+              <Link
+                to={`/editclient/${caseItem._id}`}
+                className="bg-green-800 text-white px-2 py-1 rounded transition-all duration-200 hover:bg-green-500 mt-3"
+              >
+                <CiEdit className="text-white text-lg" />
+              </Link>
 
-            <Link to={`/editclient/${caseItem._id}`} className="bg-green-800 text-white px-2 py-1 rounded transition-all duration-200 hover:bg-green-500 mt-3 ">
-            <CiEdit className='text-white text-lg' />
-            </Link>
-
-            <button onClick={()=>{deleteClient(caseItem._id)}} className="bg-red-500 text-white px-2 py-1 rounded mt-3 transition-all duration-200 hover:bg-red-400"><MdDelete className='text-white text-lg'/></button>
-            
-       
+              <button
+                onClick={() => deleteClient(caseItem._id)}
+                className="bg-red-500 text-white px-2 py-1 rounded mt-3 transition-all duration-200 hover:bg-red-400"
+              >
+                <MdDelete className="text-white text-lg" />
+              </button>
             </td>
           </tr>
         ))}
       </tbody>
     </table>
+  </div>
   );
 };
 
