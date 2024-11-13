@@ -17,9 +17,9 @@ const EditUser = () => {
     const [clientDet, setClientDet] = useState(initialState)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
-    const history = useNavigate()
+    const navigate = useNavigate()
 
-    const {_id} = useParams()
+    const {id} = useParams()
 
     const handleChange = (e) => {
         let {name, value} = e.target
@@ -31,34 +31,34 @@ const EditUser = () => {
         e.preventDefault()
         try {
             setLoading(true)
-            const response = await axios.patch(`https://gemsolicitors-server.onrender.com/api/cases/${_id}`, clientDet)
+            const response = await axios.patch(`https://gemsolicitors-server.onrender.com/api/cases/${id}`, clientDet)
 
             if(response.status === 200){
                 console.log('Client Updated');
                 console.log(response.status);
-                history('/')
+                navigate('/')
             }
             
             setError(null)
             setLoading(false)
         } catch (err) {
-            setError(`Can't update client`)
-            setLoading(false)
-
-        }
+            setError(err.response ? err.response.data.error : 'An unexpected error occurred');
+            setLoading(false);
+          
     }
+}
 
     useEffect (() => {
         const fetchClientDetail = async () => {
             try {
-                const res = await axios.get(`https://gemsolicitors-server.onrender.com/api/cases/${_id}`);
+                const res = await axios.get(`https://gemsolicitors-server.onrender.com/api/cases/${id}`);
                 setClientDet(res.data.client)
             }catch (err){
                 setClientDet(false)
             }
         }
         fetchClientDetail()
-    }, [_id])
+    }, [id])
 
   return (
     <>
