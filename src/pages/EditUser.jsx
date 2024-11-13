@@ -19,7 +19,7 @@ const EditUser = () => {
     const [error, setError] = useState(null)
     const navigate = useNavigate()
 
-    const {id} = useParams()
+    const {_id} = useParams()
 
     const handleChange = (e) => {
         let {name, value} = e.target
@@ -31,7 +31,7 @@ const EditUser = () => {
         e.preventDefault()
         try {
             setLoading(true)
-            const response = await axios.patch(`https://gemsolicitors-server.onrender.com/api/cases/${id}`, clientDet)
+            const response = await axios.patch(`https://gemsolicitors-server.onrender.com/api/cases/${_id}`, clientDet)
 
             if(response.status === 200){
                 console.log('Client Updated');
@@ -51,14 +51,14 @@ const EditUser = () => {
     useEffect (() => {
         const fetchClientDetail = async () => {
             try {
-                const res = await axios.get(`https://gemsolicitors-server.onrender.com/api/cases/${id}`);
+                const res = await axios.get(`https://gemsolicitors-server.onrender.com/api/cases/${_id}`);
                 setClientDet(res.data.client)
             }catch (err){
                 setClientDet(false)
             }
         }
         fetchClientDetail()
-    }, [id])
+    }, [_id])
 
   return (
     <>

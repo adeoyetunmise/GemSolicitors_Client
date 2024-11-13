@@ -29,7 +29,7 @@ function App() {
 
           
       </Route>
-      <Route path='/editclient/:id' element={<EditUser/>}></Route>
+      <Route path='/editclient/:_id' element={<EditUser/>}></Route>
     </Routes>
 
     </>

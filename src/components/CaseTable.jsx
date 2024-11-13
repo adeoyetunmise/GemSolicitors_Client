@@ -60,7 +60,7 @@ if (sure) {
             <td className="border px-4 py-2">{caseItem.status}</td>
             <td className="border px-4 py-2 flex items-center justify-center space-x-2">
 
-            <Link to={`/editClient/${caseItem.id}`} className="bg-green-800 text-white px-2 py-1 rounded transition-all duration-200 hover:bg-green-500 mt-3 ">
+            <Link to={`/editclient/${caseItem.id}`} className="bg-green-800 text-white px-2 py-1 rounded transition-all duration-200 hover:bg-green-500 mt-3 ">
             <CiEdit className='text-white text-lg' />
             </Link>
 
