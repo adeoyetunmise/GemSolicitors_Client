@@ -1,29 +1,36 @@
-import React from 'react'
-import { useState } from 'react';
-import { FaBars, FaTachometerAlt, FaUsers, FaFolder, FaCalendarAlt, FaFileAlt, FaChartLine } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { FaBars, FaTachometerAlt, FaUsers, FaFolder, FaFileAlt, FaChartLine } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
-const SideBarNav = () => {
 
-    const [isOpen, setIsOpen] = useState(false);
+const SideBarNav = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <div className='sticky left-0 top-0'>
-    
-    <div className="flex h-screen">
+    <div className="sticky left-0 top-0 z-30">
       {/* Mobile Menu Button */}
       <button 
-        className="lg:hidden p-4 focus:outline-none text-white bg-gray-800"
+        className="lg:hidden p-4 focus:outline-none text-white bg-gray-800 fixed top-0 left-0 z-40"
         onClick={() => setIsOpen(!isOpen)}
       >
         <FaBars size={24} />
       </button>
 
+      {/* Overlay for Mobile */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 bg-black opacity-50 z-20 lg:hidden"
+          onClick={() => setIsOpen(false)}
+        ></div>
+      )}
+
       {/* Sidebar */}
-      <div className={`fixed lg:static inset-y-0 left-0 z-10 transform ${isOpen ? "translate-x-0" : "-translate-x-full"} 
+      <div className={`fixed lg:static inset-y-0 left-0 z-30 transform ${isOpen ? "translate-x-0" : "-translate-x-full"} 
         lg:translate-x-0 transition-transform duration-200 ease-in-out lg:flex lg:flex-col w-64 bg-gray-800 text-white`}>
         
         {/* Logo Section */}
         <div className="flex items-center justify-center mt-8 mb-8">
-          <img src="/svgs/law.svg" alt="logo" className="h-10 w-10 rounded-full" /><span className="text-xl font-semibold">GemSolicitors</span>
+          <img src="/svgs/law.svg" alt="logo" className="h-10 w-10 rounded-full" />
+          <span className="text-xl font-semibold ml-2">GemSolicitors</span>
         </div>
 
         {/* Navigation Links */}
@@ -45,12 +52,8 @@ const SideBarNav = () => {
           </NavLink>
         </nav>
       </div>
-      </div>
-      </div>
-
-     
-    
-  )
+    </div>
+  );
 }
 
-export default SideBarNav
+export default SideBarNav;
